@@ -1,12 +1,18 @@
 # importing the required libraries  
-import tkinter  
+import os
+import tkinter 
+#import sci_calculator 
 from tkinter import *  
 from tkinter import messagebox  
   
 # setting the initial values of some variables  
 var = ""  
 A = 0  
-operator = ""  
+operator = "" 
+
+#scientific calculator button
+def button_sci
+os.system('python sci_calculator.py')
   
 # defining the function for Button 1  
 def button_1_is_Clicked():  
@@ -202,7 +208,20 @@ frameFour = Frame(guiWindow, bg = "#000000")
 frameFour.pack(expand = True, fill = "both")  
   
 # creating buttons for each frame  
-# buttons for first frame  
+# buttons for first frame 
+
+# Change to scientific calculator window
+b = Button(
+    frameOne,
+    text = "Scientific Calculator",
+    font = ("Cambria", 15),
+    relief = GROOVE,  
+    border = 0,  
+    command = button_sci_is_Clicked  
+)
+
+b.pack()
+
 # button 1  
 buttonONE = Button(  
     frameOne,  
@@ -214,6 +233,8 @@ buttonONE = Button(
 )  
 # placing buttons side by side  
 buttonONE.pack(side = LEFT, expand = True, fill = "both")  
+
+
   
 # button 2  
 buttonTWO = Button(  
