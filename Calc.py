@@ -1,7 +1,7 @@
 # importing the required libraries  
 import os
 import tkinter 
-#import sci_calculator 
+import sci_calculator 
 from tkinter import *  
 from tkinter import messagebox  
   
@@ -11,8 +11,8 @@ A = 0
 operator = "" 
 
 #scientific calculator button
-def button_sci
-os.system('python sci_calculator.py')
+def button_sci_is_Clicked():
+    os.system("python D:\COURSES\BTECH\PROJECT\Calculator\sci_calculator.py")
   
 # defining the function for Button 1  
 def button_1_is_Clicked():  
