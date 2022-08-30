@@ -158,7 +158,7 @@ def res():
     elif operator == "/":  
         a = float((var2.split("/")[1]))  
         if a == 0:  
-            messagebox.showerror("Division by 0 Not Allowed.")  
+            messagebox.showerror("Error!", "Division by 0 Not Allowed.")  
             A == ""  
             var = ""  
             the_data.set(var)  
