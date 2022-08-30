@@ -171,9 +171,10 @@ def res():
             var = str(x)  
   
 # creating an object of the Tk() class  
-guiWindow = tkinter.Tk()  
-# setting the size of the window  
-guiWindow.geometry("320x500+400+400") 
+guiWindow = tkinter.Tk()
+
+# setting the size and position of the window  
+guiWindow.geometry("320x500+400+30") 
 
 
 # we can disable GUI resizing function through this 
@@ -182,8 +183,9 @@ guiWindow.geometry("320x500+400+400")
 
 # Title of the basic calc window  
 guiWindow.title("Calculator")  
-  
-# creating the label for the window  
+
+
+# creating the label (display) for the window  
 the_data = StringVar()  
 guiLabel = Label(  
     guiWindow,  
@@ -192,8 +194,9 @@ guiLabel = Label(
     font = ("Cambria Math", 20),  
     textvariable = the_data,  
     background = "#ffffff",  
-    fg = "#000000"  
+    fg = "#000000" 
 )  
+
 # using the pack() method  
 guiLabel.pack(expand = True, fill = "both")  
   
