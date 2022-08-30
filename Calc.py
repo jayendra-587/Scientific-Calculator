@@ -10,6 +10,7 @@ var = ""
 A = 0  
 operator = "" 
 
+
 #scientific calculator button
 def button_sci_is_Clicked():
     os.system("python D:\COURSES\BTECH\PROJECT\Calculator\sci_calculator.py")
@@ -189,18 +190,19 @@ guiWindow.title("Calculator")
 the_data = StringVar()  
 guiLabel = Label(  
     guiWindow,  
-    text = "Label",  
-    anchor = SE,  
+    # text = "Label",  
+    anchor = E,  
     font = ("Cambria Math", 20),  
-    textvariable = the_data,  
+    textvariable = the_data,  # text gets override when textvariable is present
     background = "#ffffff",  
     fg = "#000000",
     cursor="arrow"
 )  
 
-# using the pack() method  
+# using the pack() method for display or label
 guiLabel.pack(expand = True, fill = "both")  
   
+
 # creating the frames for the buttons  
 # first frame  
 frameOne = Frame(guiWindow, bg = "#F0F0F0")  
@@ -218,6 +220,10 @@ frameThree.pack(expand = True, fill = "both")
 frameFour = Frame(guiWindow, bg = "#000000")  
 frameFour.pack(expand = True, fill = "both")  
   
+# fifth frame
+frameFive = Frame(guiWindow, bg = "#000000")
+frameFive.pack(expand = True, fill = "both")
+
 # creating buttons for each frame  
 # buttons for first frame 
 
@@ -235,7 +241,7 @@ b.pack()
 
 # button 1  
 buttonONE = Button(  
-    frameOne,  
+    frameTwo,  
     text = "1",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -249,7 +255,7 @@ buttonONE.pack(side = LEFT, expand = True, fill = "both")
   
 # button 2  
 buttonTWO = Button(  
-    frameOne,  
+    frameTwo,  
     text = "2",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -261,7 +267,7 @@ buttonTWO.pack(side = LEFT, expand = True, fill = "both")
   
 # button 3  
 buttonTHREE = Button(  
-    frameOne,  
+    frameTwo,  
     text = "3",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -273,7 +279,7 @@ buttonTHREE.pack(side = LEFT, expand = True, fill = "both")
   
 # button C  
 buttonC = Button(  
-    frameOne,  
+    frameTwo,  
     text = "C",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -286,7 +292,7 @@ buttonC.pack(side = LEFT, expand = True, fill = "both")
 # buttons for second frame  
 # button 4  
 buttonFOUR = Button(  
-    frameTwo,  
+    frameThree,  
     text = "4",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -298,7 +304,7 @@ buttonFOUR.pack(side = LEFT, expand = True, fill = "both")
   
 # button 5  
 buttonFIVE = Button(  
-    frameTwo,  
+    frameThree,  
     text = "5",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -310,7 +316,7 @@ buttonFIVE.pack(side = LEFT, expand = True, fill = "both")
   
 # button 6  
 buttonSIX = Button(  
-    frameTwo,  
+    frameThree,  
     text = "6",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -322,7 +328,7 @@ buttonSIX.pack(side = LEFT, expand = True, fill = "both")
   
 # button +  
 buttonADD = Button(  
-    frameTwo,  
+    frameThree,  
     text = "+",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -335,7 +341,7 @@ buttonADD.pack(side = LEFT, expand = True, fill = "both")
 # buttons for third frame  
 # button 7  
 buttonSEVEN = Button(  
-    frameThree,  
+    frameFour,  
     text = "7",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -347,7 +353,7 @@ buttonSEVEN.pack(side = LEFT, expand = True, fill = "both")
   
 # button 8  
 buttonEIGHT = Button(  
-    frameThree,  
+    frameFour,  
     text = "8",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -359,7 +365,7 @@ buttonEIGHT.pack(side = LEFT, expand = True, fill = "both")
   
 # button 9  
 buttonNINE = Button(  
-    frameThree,  
+    frameFour,  
     text = "9",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -371,7 +377,7 @@ buttonNINE.pack(side = LEFT, expand = True, fill = "both")
   
 # button -  
 buttonSUB = Button(  
-    frameThree,  
+    frameFour,  
     text = "-",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -384,7 +390,7 @@ buttonSUB.pack(side = LEFT, expand = True, fill = "both")
 # buttons for fourth frame  
 # button 0  
 buttonZERO = Button(  
-    frameFour,  
+    frameFive,  
     text = "0",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -396,7 +402,7 @@ buttonZERO.pack(side = LEFT, expand = True, fill = "both")
   
 # button *  
 buttonMUL = Button(  
-    frameFour,  
+    frameFive,  
     text = "*",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -408,7 +414,7 @@ buttonMUL.pack(side = LEFT, expand = True, fill = "both")
   
 # button /  
 buttonDIV = Button(  
-    frameFour,  
+    frameFive,  
     text = "/",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
@@ -420,7 +426,7 @@ buttonDIV.pack(side = LEFT, expand = True, fill = "both")
   
 # button +  
 buttonEQUAL = Button(  
-    frameFour,  
+    frameFive,  
     text = "=",  
     font = ("Cambria", 22),  
     relief = GROOVE,  
