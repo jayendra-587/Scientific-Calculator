@@ -146,7 +146,10 @@ def res():
         the_data.set(x)  
         var = str(x)  
     elif operator == "-":  
-        a = float((var2.split("-")[1]))  
+        a = float((var2.split("-")[1])) 
+        print("var = ", var)
+        print("a = ", a)
+        print("A = ", A)
         x = A - a  
         the_data.set(x)  
         var = str(x)  
@@ -170,10 +173,14 @@ def res():
 # creating an object of the Tk() class  
 guiWindow = tkinter.Tk()  
 # setting the size of the window  
-guiWindow.geometry("320x500+400+400")  
-# disabling the resize option for better UI  
-guiWindow.resizable(0, 0)  
-# setting the title of the Calculator window  
+guiWindow.geometry("320x500+400+400") 
+
+
+# we can disable GUI resizing function through this 
+# guiWindow.resizable(0, 0) 
+
+
+# Title of the basic calc window  
 guiWindow.title("Calculator")  
   
 # creating the label for the window  
