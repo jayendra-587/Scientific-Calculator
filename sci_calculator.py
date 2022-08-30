@@ -336,4 +336,11 @@ btneq = Button(btnrow4, text="=", font="Cambria 23", relief=GROOVE, bd=0, comman
 btneq.pack(side=LEFT, expand=TRUE, fill=BOTH)
 btnd = Button(btnrow4, text="/", font="Cambria 23", relief=GROOVE, bd=0, command=btnd_clicked, fg="white", bg="#333333")
 btnd.pack(side=LEFT, expand=TRUE, fill=BOTH)
+
+
+# # replacing default tkinter logo
+# guiWindow.wm_attributes('-toolwindow', 'True') # it is used to completely remove the logo
+photo = PhotoImage(file = 'D:\COURSES\BTECH\PROJECT\Calculator\logo\logo.png')
+root.iconphoto(False, photo)
+
 root.mainloop()

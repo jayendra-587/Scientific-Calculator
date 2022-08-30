@@ -417,7 +417,14 @@ buttonEQUAL = Button(
     command = res  
 )  
 # placing buttons side by side  
-buttonEQUAL.pack(side = LEFT, expand = True, fill = "both")  
-  
+buttonEQUAL.pack(side = LEFT, expand = True, fill = "both") 
+
+
+# # replacing default tkinter logo
+# guiWindow.wm_attributes('-toolwindow', 'True') # it is used to completely remove the logo
+photo = PhotoImage(file = 'D:\COURSES\BTECH\PROJECT\Calculator\logo\logo.png')
+guiWindow.iconphoto(False, photo)
+
+
 # running the GUI  
 guiWindow.mainloop()
