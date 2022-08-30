@@ -1,7 +1,7 @@
 # importing the required libraries  
 import os
 import tkinter 
-import sci_calculator 
+#import sci_calculator 
 from tkinter import *  
 from tkinter import messagebox  
   
@@ -174,7 +174,7 @@ guiWindow.geometry("320x500+400+400")
 # disabling the resize option for better UI  
 guiWindow.resizable(0, 0)  
 # setting the title of the Calculator window  
-guiWindow.title("Scientific Calculator")  
+guiWindow.title("Calculator")  
   
 # creating the label for the window  
 the_data = StringVar()  
@@ -192,7 +192,7 @@ guiLabel.pack(expand = True, fill = "both")
   
 # creating the frames for the buttons  
 # first frame  
-frameOne = Frame(guiWindow, bg = "#000000")  
+frameOne = Frame(guiWindow, bg = "#F0F0F0")  
 frameOne.pack(expand = True, fill = "both") # frame can expand if it gets some space  
   
 # second frame  
@@ -214,7 +214,7 @@ frameFour.pack(expand = True, fill = "both")
 b = Button(
     frameOne,
     text = "Scientific Calculator",
-    font = ("Cambria", 15),
+    font = ("Cambria", 17),
     relief = GROOVE,  
     border = 0,  
     command = button_sci_is_Clicked  
