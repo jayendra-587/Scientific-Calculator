@@ -1,4 +1,4 @@
-# importing the required libraries  
+# Liberaries
 import os
 import tkinter 
 #import sci_calculator 
