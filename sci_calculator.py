@@ -1,201 +1,339 @@
 from tkinter import *
+import tkinter.messagebox
 import math
-from pygame import mixer
-import speech_recognition
-
-mixer.init()
-
-
-def click(value):
-    ex = entryField.get()  # 789 ex[0:len(ex)-1]
-    answer = ''
-
-    try:
-
-        if value == 'C':
-            ex = ex[0:len(ex) - 1]  # 78
-            entryField.delete(0, END)
-            entryField.insert(0, ex)
-            return
-
-        elif value == 'CE':
-            entryField.delete(0, END)
-
-        elif value == '√':
-            answer = math.sqrt(eval(ex))
-
-        elif value == 'π':
-            answer = math.pi
-
-        elif value == 'cosθ':
-            answer = math.cos(math.radians(eval(ex)))
-
-        elif value == 'tanθ':
-            answer = math.tan(math.radians(eval(ex)))
-
-        elif value == 'sinθ':
-            answer = math.sin(math.radians(eval(ex)))
-
-        elif value == '2π':
-            answer = 2 * math.pi
-
-        elif value == 'cosh':
-            answer = math.cosh(eval(ex))
-
-        elif value == 'tanh':
-            answer = math.tanh(eval(ex))
-
-        elif value == 'sinh':
-            answer = math.sinh(eval(ex))
-
-        elif value == chr(8731):
-            answer = eval(ex) ** (1 / 3)
-
-        elif value == 'x\u02b8':  # 7**2
-            entryField.insert(END, '**')
-            return
-
-        elif value == 'x\u00B3':
-            answer = eval(ex) ** 3
-
-        elif value == 'x\u00B2':
-            answer = eval(ex) ** 2
-
-        elif value == 'ln':
-            answer = math.log2(eval(ex))
-
-        elif value == 'deg':
-            answer = math.degrees(eval(ex))
-
-        elif value == "rad":
-            answer = math.radians(eval(ex))
-
-        elif value == 'e':
-            answer = math.e
-
-        elif value == 'log₁₀':
-            answer = math.log10(eval(ex))
-
-        elif value == 'x!':
-            answer = math.factorial(ex)
-
-        elif value == chr(247):  # 7/2=3.5
-            entryField.insert(END, "/")
-            return
-
-        elif value == '=':
-            answer = eval(ex)
-
-        else:
-            entryField.insert(END, value)
-            return
-
-        entryField.delete(0, END)
-        entryField.insert(0, answer)
-
-    except SyntaxError:
-        pass
-
-def add(a,b):
-    return a+b
-def sub(a,b):
-    return a-b
-
-def mul(a, b):
-    return a * b
-def div(a, b):
-    return a / b
-
-def mod(a, b):
-    return a % b
-
-def lcm(a,b):
-    l=math.lcm(a,b)
-    return l
-
-def hcf(a,b):
-    h=math.gcd(a,b)
-    return h
-
-operations={'ADD':add,'ADDITION':add,'SUM':add,'PLUS':add,
-            'SUBTRACTION':sub , 'DIFFERENCE':sub , 'MINUS':sub , 'SUBTRACT':sub,
-            'PRODUCT': mul, 'MULTIPLICATION': mul,'MULTIPLY': mul,
-            'DIVISION': div, 'DIV': div, 'DIVIDE': div,
-            'LCM':lcm , 'HCF':hcf,
-            'MOD':mod ,'REMAINDER':mod , 'MODULUS':mod }
-
-
-def findNumbers(t):
-    l=[]
-    for num in t:
-        try:
-            l.append(int(num))
-        except ValueError:
-            pass
-    return l
-
-def audio():
-    mixer.music.load('music1.mp3')
-    mixer.music.play()
-    sr = speech_recognition.Recognizer()
-    with speech_recognition.Microphone()as m:
-        try:
-            sr.adjust_for_ambient_noise(m,duration=0.2)
-            voice=sr.listen(m)
-            text=sr.recognize_google(voice)
-
-            mixer.music.load('music2.mp3')
-            mixer.music.play()
-            text_list=text.split(' ')
-            for word in text_list:
-                if word.upper() in operations.keys():
-                    l=findNumbers(text_list)
-                    print(l)
-                    result=operations[word.upper()](l[0],l[1]) #mul(5.0,6.0)
-                    entryField.delete(0,END)
-                    entryField.insert(END,result)
-
-                else:
-                    pass
-
-
-        except:
-            pass
-
-
-
 root = Tk()
-root.title('Smart Calculator')
-root.config(bg='dodgerblue3')
-root.geometry('680x486+100+100')
-
-logoImage = PhotoImage(file='logo.png')
-logoLabel = Label(root, image=logoImage, bg='dodgerblue3')
-logoLabel.grid(row=0, column=0)
-
-entryField = Entry(root, font=('arial', 20, 'bold'), bg='dodgerblue3', fg='white', bd=10, relief=SUNKEN, width=30)
-entryField.grid(row=0, column=0, columnspan=8)
-
-micImage = PhotoImage(file='microphone.png')
-micButton = Button(root, image=micImage, bd=0, bg='dodgerblue3', activebackground='dodgerblue3'
-                   ,command=audio)
-micButton.grid(row=0, column=7)
-
-button_text_list = ["C", "CE", "√", "+", "π", "cosθ", "tanθ", "sinθ",
-                    "1", "2", "3", "-", "2π", "cosh", "tanh", "sinh",
-                    "4", "5", "6", "*", chr(8731), "x\u02b8", "x\u00B3", "x\u00B2",
-                    "7", "8", "9", chr(247), "ln", "deg", "rad", "e",
-                    "0", ".", "%", "=", "log₁₀", "(", ")", "x!"]
-rowvalue = 1
-columnvalue = 0
-for i in button_text_list:
-
-    button = Button(root, width=5, height=2, bd=2, relief=SUNKEN, text=i, bg='dodgerblue3', fg='white',
-                    font=('arial', 18, 'bold'), activebackground='dodgerblue3', command=lambda button=i: click(button))
-    button.grid(row=rowvalue, column=columnvalue, pady=1)
-    columnvalue += 1
-    if columnvalue > 7:
-        rowvalue += 1
-        columnvalue = 0
-
+root.geometry("650x400+300+300")
+root.title("Scientific Calculator")
+switch = None
+# Button on press
+def btn1_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+    pos = len(disp.get())
+    disp.insert(pos, '1')
+def btn2_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+    pos = len(disp.get())
+    disp.insert(pos, '2')
+def btn3_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+    pos = len(disp.get())
+    disp.insert(pos, '3')
+def btn4_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+    pos = len(disp.get())
+    disp.insert(pos, '4')
+def btn5_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+    pos = len(disp.get())
+    disp.insert(pos, '5')
+def btn6_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+    pos = len(disp.get())
+    disp.insert(pos, '6')
+def btn7_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+    pos = len(disp.get())
+    disp.insert(pos, '7')
+def btn8_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+    pos = len(disp.get())
+    disp.insert(pos, '8')
+def btn9_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+    pos = len(disp.get())
+    disp.insert(pos, '9')
+def btn0_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+    pos = len(disp.get())
+    disp.insert(pos, '0')
+def key_event(*args):
+    if disp.get() == '0':
+        disp.delete(0, END)
+def btnp_clicked():
+    pos = len(disp.get())
+    disp.insert(pos, '+')
+def btnm_clicked():
+    pos = len(disp.get())
+    disp.insert(pos, '-')
+def btnml_clicked():
+    pos = len(disp.get())
+    disp.insert(pos, '*')
+def btnd_clicked():
+    pos = len(disp.get())
+    disp.insert(pos, '/')
+def btnc_clicked(*args):
+    disp.delete(0, END)
+    disp.insert(0, '0')
+def sin_clicked():
+    try:
+        ans = float(disp.get())
+        if switch is True:
+            ans = math.sin(math.radians(ans))
+        else:
+            ans = math.sin(ans)
+            disp.delete(0, END)
+            disp.insert(0, str(ans))
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def cos_clicked():
+    try:
+        ans = float(disp.get())
+        if switch is True:
+            ans = math.cos(math.radians(ans))
+        else:
+            ans = math.cos(ans)
+            disp.delete(0, END)
+            disp.insert(0, str(ans))
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def tan_clicked():
+    try:
+        ans = float(disp.get())
+        if switch is True:
+            ans = math.tan(math.radians(ans))
+        else:
+            ans = math.tan(ans)
+            disp.delete(0, END)
+            disp.insert(0, str(ans))
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def arcsin_clicked():
+    try:
+        ans = float(disp.get())
+        if switch is True:
+            ans = math.degrees(math.asin(ans))
+        else:
+            ans = math.asin(ans)
+            disp.delete(0, END)
+            disp.insert(0, str(ans))
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def arccos_clicked():
+    try:
+        ans = float(disp.get())
+        if switch is True:
+            ans = math.degrees(math.acos(ans))
+        else:
+            ans = math.acos(ans)
+            disp.delete(0, END)
+            disp.insert(0, str(ans))
+    except Exception:
+            tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def arctan_clicked():
+    try:
+        ans = float(disp.get())
+        if switch is True:
+            ans = math.degrees(math.atan(ans))
+        else:
+            ans = math.atan(ans)
+            disp.delete(0, END)
+            disp.insert(0, str(ans))
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def pow_clicked():
+    pos = len(disp.get())
+    disp.insert(pos, '**')
+def round_clicked():
+    try:
+        ans = float(disp.get())
+        ans = round(ans)
+        disp.delete(0, END)
+        disp.insert(0, str(ans))
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def logarithm_clicked():
+    try:
+        ans = float(disp.get())
+        ans = math.log10(ans)
+        disp.delete(0, END)
+        disp.insert(0, str(ans))
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def fact_clicked():
+    try:
+        ans = float(disp.get())
+        ans = math.factorial(ans)
+        disp.delete(0, END)
+        disp.insert(0, str(ans))
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def sqr_clicked():
+    try:
+        ans = float(disp.get())
+        ans = math.sqrt(ans)
+        disp.delete(0, END)
+        disp.insert(0, str(ans))
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def dot_clicked():
+    pos = len(disp.get())
+    disp.insert(pos, '.')
+def pi_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+        pos = len(disp.get())
+        disp.insert(pos, str(math.pi))
+def e_clicked():
+    if disp.get() == '0':
+        disp.delete(0, END)
+        pos = len(disp.get())
+        disp.insert(pos, str(math.e))
+def bl_clicked():
+    pos = len(disp.get())
+    disp.insert(pos, '(')
+def br_clicked():
+    pos = len(disp.get())
+    disp.insert(pos, ')')
+def del_clicked():
+    pos = len(disp.get())
+    display = str(disp.get())
+    if display == '':
+        disp.insert(0, '0')
+    elif display == ' ':
+        disp.insert(0, '0')
+    elif display == '0':
+        pass
+    else:
+        disp.delete(0, END)
+        disp.insert(0, display[0:pos-1])
+def conv_clicked():
+    global switch
+    if switch is None:
+        switch = True
+        conv_btn['text'] = "Deg"
+    else:
+        switch = None
+        conv_btn['text'] = "Rad"
+def ln_clicked():
+    try:
+        ans = float(disp.get())
+        ans = math.log(ans)
+        disp.delete(0, END)
+        disp.insert(0, str(ans))
+    except Exception:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+def mod_clicked():
+    pos = len(disp.get())
+    disp.insert(pos, '%')
+def btneq_clicked():
+    try:
+        ans = disp.get()
+        ans = eval(ans)
+        disp.delete(0, END)
+        disp.insert(0, ans)
+    except:
+        tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+# Label
+data = StringVar()
+disp = Entry(root, font="Verdana 20", fg="black", bg="mistyrose", bd=4, justify=RIGHT, insertbackground="#abbab1", cursor="arrow")
+#disp.bind("<Return>", btneq_clicked)
+#disp.bind("<Escape>", btnc_clicked)
+#disp.bind("<Key-1>", key_event)
+#disp.bind("<Key-2>", key_event)
+#disp.bind("<Key-3>", key_event)
+#disp.bind("<Key-4>", key_event)
+#disp.bind("<Key-5>", key_event)
+#disp.bind("<Key-6>", key_event)
+#disp.bind("<Key-7>", key_event)
+#disp.bind("<Key-8>", key_event)
+#disp.bind("<Key-9>", key_event)
+#disp.bind("<Key-0>", key_event)
+#disp.bind("<Key-.>", key_event)
+#disp.insert(0, '0')
+#disp.focus_set()
+disp.pack(expand=TRUE, fill=BOTH)
+# Row 1 Buttons
+btnrow1 = Frame(root, bg="#000000")
+btnrow1.pack(expand=TRUE, fill=BOTH)
+pi_btn = Button(btnrow1, text="π", font="Segoe 18", relief=GROOVE, bd=0, command=pi_clicked, fg="white", bg="#333333")
+pi_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+fact_btn = Button(btnrow1, text=" x! ", font="Segoe 18", relief=GROOVE, bd=0, command=fact_clicked, fg="white", bg="#333333")
+fact_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+sin_btn = Button(btnrow1, text="sin", font="Segoe 18", relief=GROOVE, bd=0, command=sin_clicked, fg="white", bg="#333333")
+sin_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+cos_btn = Button(btnrow1, text="cos", font="Segoe 18", relief=GROOVE, bd=0, command=cos_clicked, fg="white", bg="#333333")
+cos_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+tan_btn = Button(btnrow1, text="tan", font="Segoe 18", relief=GROOVE, bd=0, command=tan_clicked, fg="white", bg="#333333")
+tan_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btn1 = Button(btnrow1, text="1", font="Segoe 23", relief=GROOVE, bd=0, command=btn1_clicked, fg="white", bg="#333333")
+btn1.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btn2 = Button(btnrow1, text="2", font="Segoe 23", relief=GROOVE, bd=0, command=btn2_clicked, fg="white", bg="#333333")
+btn2.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btn3 = Button(btnrow1, text="3", font="Segoe 23", relief=GROOVE, bd=0, command=btn3_clicked, fg="white", bg="#333333")
+btn3.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btnp = Button(btnrow1, text="+", font="Segoe 23", relief=GROOVE, bd=0, command=btnp_clicked, fg="white", bg="#333333")
+btnp.pack(side=LEFT, expand=TRUE, fill=BOTH)
+# Row 2 Buttons
+btnrow2 = Frame(root)
+btnrow2.pack(expand=TRUE, fill=BOTH)
+e_btn = Button(btnrow2, text="e", font="Segoe 18", relief=GROOVE, bd=0, command=e_clicked, fg="white", bg="#333333")
+e_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+sqr_btn = Button(btnrow2, text=" √x ", font="Segoe 18", relief=GROOVE, bd=0, command=sqr_clicked, fg="white", bg="#333333")
+sqr_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+sinh_btn = Button(btnrow2, text="sin−1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arcsin_clicked, fg="white", bg="#333333")
+sinh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+cosh_btn = Button(btnrow2, text="cos-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arccos_clicked, fg="white", bg="#333333")
+cosh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+tanh_btn = Button(btnrow2, text="tan-1", font="Segoe 11 bold", relief=GROOVE, bd=0, command=arctan_clicked, fg="white", bg="#333333")
+tanh_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btn4 = Button(btnrow2, text="4", font="Segoe 23", relief=GROOVE, bd=0, command=btn4_clicked, fg="white", bg="#333333")
+btn4.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btn5 = Button(btnrow2, text="5", font="Segoe 23", relief=GROOVE, bd=0, command=btn5_clicked, fg="white", bg="#333333")
+btn5.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btn6 = Button(btnrow2, text="6", font="Segoe 23", relief=GROOVE, bd=0, command=btn6_clicked, fg="white", bg="#333333")
+btn6.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btnm = Button(btnrow2, text="-", font="Segoe 23", relief=GROOVE, bd=0, command=btnm_clicked, fg="white", bg="#333333")
+btnm.pack(side=LEFT, expand=TRUE, fill=BOTH)
+# Row 3 Buttons
+btnrow3 = Frame(root)
+btnrow3.pack(expand=TRUE, fill=BOTH)
+conv_btn = Button(btnrow3, text="Rad", font="Segoe 12 bold", relief=GROOVE, bd=0, command=conv_clicked, fg="white", bg="#FF69B4")
+conv_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+round_btn = Button(btnrow3, text="round", font="Segoe 10 bold", relief=GROOVE, bd=0, command=round_clicked, fg="white", bg="#333333")
+round_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+ln_btn = Button(btnrow3, text="ln", font="Segoe 18", relief=GROOVE, bd=0, command=ln_clicked, fg="white", bg="#333333")
+ln_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+logarithm_btn = Button(btnrow3, text="log", font="Segoe 17", relief=GROOVE, bd=0, command=logarithm_clicked, fg="white", bg="#333333")
+logarithm_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+pow_btn = Button(btnrow3, text="x^y", font="Segoe 17", relief=GROOVE, bd=0, command=pow_clicked, fg="white", bg="#333333")
+pow_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btn7 = Button(btnrow3, text="7", font="Segoe 23", relief=GROOVE, bd=0, command=btn7_clicked, fg="white", bg="#333333")
+btn7.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btn8 = Button(btnrow3, text="8", font="Segoe 23", relief=GROOVE, bd=0, command=btn8_clicked, fg="white", bg="#333333")
+btn8.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btn9 = Button(btnrow3, text="9", font="Segoe 23", relief=GROOVE, bd=0, command=btn9_clicked, fg="white", bg="#333333")
+btn9.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btnml = Button(btnrow3, text="*", font="Segoe 23", relief=GROOVE, bd=0, command=btnml_clicked, fg="white", bg="#333333")
+btnml.pack(side=LEFT, expand=TRUE, fill=BOTH)
+# Row 4 Buttons
+btnrow4 = Frame(root)
+btnrow4.pack(expand=TRUE, fill=BOTH)
+mod_btn = Button(btnrow4, text="%", font="Segoe 21", relief=GROOVE, bd=0, command=mod_clicked, fg="white", bg="#333333")
+mod_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+bl_btn = Button(btnrow4, text=" ( ", font="Segoe 21", relief=GROOVE, bd=0, command=bl_clicked, fg="white", bg="#333333")
+bl_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+br_btn = Button(btnrow4, text=" ) ", font="Segoe 21", relief=GROOVE, bd=0, command=br_clicked, fg="white", bg="#333333")
+br_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+dot_btn = Button(btnrow4, text=" • ", font="Segoe 21", relief=GROOVE, bd=0, command=dot_clicked, fg="white", bg="#333333")
+dot_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btnc = Button(btnrow4, text="C", font="Segoe 23", relief=GROOVE, bd=0, command=btnc_clicked, fg="white", bg="#333333")
+btnc.pack(side=LEFT, expand=TRUE, fill=BOTH)
+del_btn = Button(btnrow4, text="⌫", font="Segoe 20", relief=GROOVE, bd=0, command=del_clicked, fg="white", bg="#333333")
+del_btn.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btn0 = Button(btnrow4, text="0", font="Segoe 23", relief=GROOVE, bd=0, command=btn0_clicked, fg="white", bg="#333333")
+btn0.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btneq = Button(btnrow4, text="=", font="Segoe 23", relief=GROOVE, bd=0, command=btneq_clicked, fg="white", bg="#FA8072")
+btneq.pack(side=LEFT, expand=TRUE, fill=BOTH)
+btnd = Button(btnrow4, text="/", font="Segoe 23", relief=GROOVE, bd=0, command=btnd_clicked, fg="white", bg="#333333")
+btnd.pack(side=LEFT, expand=TRUE, fill=BOTH)
 root.mainloop()
