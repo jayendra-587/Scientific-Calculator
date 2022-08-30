@@ -228,7 +228,7 @@ def mod_clicked():
 def btneq_clicked():
     try:
         ans = disp.get()
-        ans = eval(ans)
+        ans = float(eval(ans))
         disp.delete(0, END)
         disp.insert(0, ans)
     except:
