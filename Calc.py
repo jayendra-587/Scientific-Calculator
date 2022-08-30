@@ -194,7 +194,8 @@ guiLabel = Label(
     font = ("Cambria Math", 20),  
     textvariable = the_data,  
     background = "#ffffff",  
-    fg = "#000000" 
+    fg = "#000000",
+    cursor="arrow"
 )  
 
 # using the pack() method  
