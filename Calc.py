@@ -1,5 +1,6 @@
 # Liberaries
 import os
+from sys import flags
 import tkinter 
 #import sci_calculator 
 from tkinter import *  
@@ -14,6 +15,8 @@ operator = ""
 #scientific calculator button
 def button_sci_is_Clicked():
     os.system("python D:\COURSES\BTECH\PROJECT\Calculator\sci_calculator.py")
+    # guiWindow.destroy() 
+    
   
 # defining the function for Button 1  
 def button_1_is_Clicked():  
@@ -206,7 +209,7 @@ guiLabel.pack(expand = True, fill = "both")
 # creating the frames for the buttons  
 # first frame  
 frameOne = Frame(guiWindow, bg = "#F0F0F0")  
-frameOne.pack(expand = True, fill = "both") # frame can expand if it gets some space  
+frameOne.pack(expand = True, fill = "x") # frame can expand if it gets some space  
   
 # second frame  
 frameTwo = Frame(guiWindow, bg = "#000000")  
@@ -232,8 +235,9 @@ b = Button(
     frameOne,
     text = "Scientific Calculator",
     font = ("Cambria", 17),
+    # bg="#FF69B4",
     relief = GROOVE,  
-    border = 0,  
+    # highlightthickness = 4, 
     command = button_sci_is_Clicked  
 )
 
