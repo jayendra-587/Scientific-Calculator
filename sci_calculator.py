@@ -233,24 +233,12 @@ def btneq_clicked():
         disp.insert(0, ans)
     except:
         tkinter.messagebox.showerror("Value Error", "Check your values and operators")
+
 # Label
 data = StringVar()
 disp = Entry(root, font="Verdana 20", fg="black", bg="#ffffff", bd=0, justify=RIGHT, insertbackground="#abbab1", cursor="arrow")
-#disp.bind("<Return>", btneq_clicked)
-#disp.bind("<Escape>", btnc_clicked)
-#disp.bind("<Key-1>", key_event)
-#disp.bind("<Key-2>", key_event)
-#disp.bind("<Key-3>", key_event)
-#disp.bind("<Key-4>", key_event)
-#disp.bind("<Key-5>", key_event)
-#disp.bind("<Key-6>", key_event)
-#disp.bind("<Key-7>", key_event)
-#disp.bind("<Key-8>", key_event)
-#disp.bind("<Key-9>", key_event)
-#disp.bind("<Key-0>", key_event)
-#disp.bind("<Key-.>", key_event)
-#disp.insert(0, '0')
-#disp.focus_set()
+
+
 disp.pack(expand=TRUE, fill=BOTH)
 # Row 1 Buttons
 btnrow1 = Frame(root, bg="#000000")
