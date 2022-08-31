@@ -21,3 +21,8 @@ This a scientific calculator which can be used to solve problems related to trig
 * [Harsh Agarwal](https://github.com/Harshagarwal52)
 * [Gourav](#)
 * [Hrishabh Tripathi](#)
+
+
+## Reference
+
+* Scientific Calculator - [Akkmr111](https://github.com/Akkmr111/Scientific-Calculator-using-Python-and-Tkinter)
