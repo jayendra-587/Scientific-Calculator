@@ -20,3 +20,4 @@ This a scientific calculator which can be used to solve problems related to trig
 * [Jayendra Vardhan Singh](https://github.com/jayendra-587)
 * [Harsh Agarwal](https://github.com/Harshagarwal52)
 * [Gourav](#)
+* [Hrishabh Tripathi](#)
