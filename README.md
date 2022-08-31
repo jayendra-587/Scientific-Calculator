@@ -15,6 +15,7 @@ This a scientific calculator which can be used to solve problems related to trig
 
 ## Contributors
 
+* [Ishu Raj](https://github.com/RajIshu)
 * [Isha Sharma](https://github.com/ishyyyy)
 * [Aryan Sharma](https://github.com/aryan1224)
 * [Jayendra Vardhan Singh](https://github.com/jayendra-587)
