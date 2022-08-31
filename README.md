@@ -3,6 +3,8 @@
 # Scientific Calculator
 
 
+
+
 <br/>
 
 This a scientific calculator which can be used to solve problems related to trigonometry, inverse trigonometry, square root, pi, logarithm and many others.
