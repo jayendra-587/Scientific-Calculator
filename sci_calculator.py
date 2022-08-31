@@ -5,6 +5,8 @@ root = Tk()
 root.geometry("650x400+300+300")
 root.title("Scientific Calculator")
 switch = None
+
+
 # Button on press
 def btn1_clicked():
     if disp.get() == '0':
