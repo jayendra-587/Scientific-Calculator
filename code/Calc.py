@@ -14,9 +14,8 @@ operator = ""
 
 #scientific calculator button
 def button_sci_is_Clicked():
-    os.system("python D:\COURSES\BTECH\PROJECT\Calculator\sci_calculator.py")
+    os.system(r"D:\UPES\Project\Minor\Scientific-Calculator\code\sci_calculator.py")
     # guiWindow.destroy() 
-    
   
 # defining the function for Button 1  
 def button_1_is_Clicked():  
@@ -443,9 +442,8 @@ buttonEQUAL.pack(side = LEFT, expand = True, fill = "both")
 
 # # replacing default tkinter logo
 # guiWindow.wm_attributes('-toolwindow', 'True') # it is used to completely remove the logo
-photo = PhotoImage(file = 'D:\COURSES\BTECH\PROJECT\Calculator\logo\logo.png')
+photo = PhotoImage(file = r'D:\UPES\Project\Minor\Scientific-Calculator\logo\logo.png')
 guiWindow.iconphoto(False, photo)
-
 
 # running the GUI  
 guiWindow.mainloop()

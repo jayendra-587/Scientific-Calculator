@@ -327,7 +327,7 @@ btnd.pack(side=LEFT, expand=TRUE, fill=BOTH)
 
 # replacing default tkinter logo
 # guiWindow.wm_attributes('-toolwindow', 'True') # it is used to completely remove the logo
-photo = PhotoImage(file = 'D:\COURSES\BTECH\PROJECT\Calculator\logo\logo.png')
+photo = PhotoImage(file = r'D:\UPES\Project\Minor\Scientific-Calculator\logo\logo.png')
 root.iconphoto(False, photo)
 
 
