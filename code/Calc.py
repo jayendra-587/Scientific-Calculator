@@ -1,10 +1,12 @@
 # Liberaries
 import os
+import sys
 from sys import flags
-import tkinter 
+import tkinter
 #import sci_calculator 
 from tkinter import *  
 from tkinter import messagebox  
+
   
 # setting the initial values of some variables  
 var = ""  
@@ -14,8 +16,11 @@ operator = ""
 
 #scientific calculator button
 def button_sci_is_Clicked():
-    os.system(r"D:\UPES\Project\Minor\Scientific-Calculator\code\sci_calculator.py")
+    os.system("python D:\COURSES\BTECH\PROJECT\Calculator\sci_calculator.py")
+    # os.system("python sci_calculator.py")
     # guiWindow.destroy() 
+    # sys.exit()
+    
   
 # defining the function for Button 1  
 def button_1_is_Clicked():  
@@ -144,7 +149,7 @@ def res():
     global var  
     var2 = var  
     if operator == "+":  
-        a = float((var2.split("+")[1]))  
+        a = float((var2.split("+")[1]))
         x = A + a  
         the_data.set(x)  
         var = str(x)  
@@ -192,7 +197,7 @@ guiWindow.title("Calculator")
 the_data = StringVar()  
 guiLabel = Label(  
     guiWindow,  
-    # text = "Label",  
+    text = "Jai Party dega",  
     anchor = E,  
     font = ("Cambria Math", 20),  
     textvariable = the_data,  # text gets override when textvariable is present
@@ -235,8 +240,7 @@ b = Button(
     text = "Scientific Calculator",
     font = ("Cambria", 17),
     # bg="#FF69B4",
-    relief = GROOVE,  
-    # highlightthickness = 4, 
+    relief = RAISED, 
     command = button_sci_is_Clicked  
 )
 
